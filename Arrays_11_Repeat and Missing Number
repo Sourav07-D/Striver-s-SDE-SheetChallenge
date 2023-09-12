@@ -1,0 +1,25 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] arr) {
+        
+        int result[]=new int[2];
+        int currsum=0;
+        int originalsum=0;
+        for (int i=0;i<arr.length;i++)
+        {
+            int originalel=Math.abs(arr[i]);
+            int index=originalel-1;
+            if(arr[index]<0)
+            {
+                result[0]=originalel;
+            }
+            else
+            {
+                arr[index]=-arr[index];
+            }
+            originalsum+=(i+1);
+            currsum+=originalel;
+        }
+        result[1]=originalsum-(currsum-result[0]);
+        return result;
+    }
