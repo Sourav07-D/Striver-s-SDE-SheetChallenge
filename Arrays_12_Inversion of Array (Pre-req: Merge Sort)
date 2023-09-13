@@ -1,0 +1,57 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static long Merge(long[] arr,int si,int mid,int ei)
+    {
+        long count=0;
+        long[] temp=new long[ei-si+1];
+        int i=si;
+        int j=mid+1;
+        int k=0;
+        while (i<=mid && j<=ei)
+        {
+            if(arr[i]<arr[j])
+            {
+                temp[k]=arr[i];
+                i++;
+            }
+            else
+            {
+                count+=(mid-i+1);
+                temp[k]=arr[j];
+                j++;
+            }
+            k++;
+        }
+        while (i<=mid)
+        {
+            temp[k++]=arr[i++];
+        }
+        while (j<=ei)
+        {
+            temp[k++]=arr[j++];
+        }
+        for (k=0,i=si;k< temp.length;k++,i++)
+        {
+            arr[i]=temp[k];
+        }
+        return count;
+    }
+
+    public static long mergeSort(long[] arr,int si,int ei)
+    {
+        long inversionCount=0;
+        if(si==ei)
+        {
+            return 0;
+        }
+        int mid=(si+ei)/2;
+        inversionCount +=mergeSort(arr,si,mid);
+        inversionCount +=mergeSort(arr,mid+1,ei);
+        inversionCount +=Merge(arr,si,mid,ei);
+        return inversionCount;
+    }
+    public static long getInversions(long arr[], int n) {
+       return mergeSort(arr,0,n-1);
+    }
+}
