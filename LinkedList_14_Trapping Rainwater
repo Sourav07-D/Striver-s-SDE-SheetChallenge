@@ -1,0 +1,24 @@
+class Solution {
+    public int trap(int[] height) {
+  int water=0;
+  int si=0;
+  int ei=height.length-1;
+  int lmax=0;
+  int rmax=0;
+  for(int i=0;i<height.length;i++)
+  {
+      lmax=Math.max(lmax,height[si]);
+      rmax=Math.max(rmax,height[ei]);
+      if(lmax<rmax)
+      {
+          water+=lmax-height[si];
+          si++;
+      }else
+      {
+          water+=rmax-height[ei];
+          ei--;
+      }
+  }
+  return water;
+}
+}
