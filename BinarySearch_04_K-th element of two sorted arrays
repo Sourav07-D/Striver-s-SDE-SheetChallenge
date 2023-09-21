@@ -1,0 +1,60 @@
+
+
+//User function Template for Java
+
+
+class Solution {
+    public long kthElement( int arr1[], int arr2[], int n, int m, int k) {
+    //   ArrayList<Long> arr=new ArrayList<>() ;
+    //   for(int i:arr1)
+    //   {
+    //       arr.add((long)i);
+    //   }
+    //   for(int i:arr2)
+    //   {
+    //       arr.add((long)i);
+    //   } 
+    //   Collections.sort(arr);
+    //   return arr.get(k-1);
+    
+    int i=0,j=0,idx=0;
+    while(i<n && j<m)
+    {
+        idx+=1;
+        if(arr1[i]<=arr2[j])
+        {
+            if(idx==k)
+            {
+                return arr1[i];
+            }
+            i++;
+        }else
+        {
+            if(idx==k)
+            {
+                return arr2[j];
+            }
+            j++;
+        }
+    }
+    while(i<n)
+    {
+        idx+=1;
+            if(idx==k)
+            {
+                return arr1[i];
+            }
+            i++;        
+    }
+    while(j<m)
+    {
+        idx+=1;
+      if(idx==k)
+            {
+                return arr2[j];
+            }
+            j++;   
+    }
+    return k;
+    }
+}
