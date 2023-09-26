@@ -1,0 +1,65 @@
+class MinStack {
+    
+    // at the first, the head is null, cause the stack is empty.
+  Stack<Integer> alldata=new Stack<>();
+   Stack<Integer> mindata=new Stack<>();
+
+    public MinStack() {
+         alldata=new Stack<>();
+            mindata=new Stack<>();
+    }
+    
+    public void push(int val) {
+          alldata.push(val);
+            if(mindata.size()==0 || mindata.peek()>=val)
+            {
+                mindata.push(val);
+            }
+    }
+    
+    public void pop() {
+         if(alldata.size()==0)
+            {
+               System.out.println("under flow");
+                //return -1;
+            }
+            int val=alldata.pop();
+            if(val==mindata.peek())
+            {
+                mindata.pop();
+            }
+          //  return val;
+    }
+    
+    public int top() {
+        if(alldata.size()==0)
+            {
+               // System.out.println("under flow");
+                return -1;
+            }
+            else {
+                return alldata.peek();
+            }
+    }
+    
+    public int getMin() {
+         if(alldata.size()==0)
+            {
+             //   System.out.println("under flow");
+                return -1;
+            }
+            else
+            {
+                return mindata.peek();
+            }
+        }
+    }
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(val);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
