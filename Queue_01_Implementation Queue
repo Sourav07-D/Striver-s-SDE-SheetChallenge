@@ -1,0 +1,98 @@
+package Aj_Java;
+
+import org.w3c.dom.ls.LSOutput;
+
+public class Queue_05__dynamicQueue {
+    public static class CustomStack{
+        int[] data;
+        int size;
+        int front;
+      public CustomStack(int cap)
+      {
+          data=new int[cap];
+          size=0;
+          front=0;
+      }
+      int size()
+      {
+          return size;
+      }
+      void display()
+      {
+          for (int i=0;i<data.length;i++)
+          {
+              int idx=(i+front)% data.length;
+              System.out.print(data[idx]+" ");
+          }
+          System.out.println();
+      }
+
+      void push(int val)
+      {
+          if(size==data.length)
+          {
+              int[] ndata=new int[2*data.length];
+              for (int i=0;i<data.length;i++)
+              {
+                  int idx=(front+i)%data.length;
+                  ndata[i]=data[idx];
+              }
+              data=ndata;
+              front=0;
+              int rear=(size+front)% data.length;
+              data[rear]=val;
+              size++;
+
+          }
+          else
+          {
+              int rear=(size+front)% data.length;
+              data[rear]=val;
+              size++;
+          }
+      }
+      int remove()
+      {
+          if(size==0)
+          {
+              System.out.println("Queue underflow");
+              return -1;
+          }
+          else
+          {
+              int val=data[front];
+              size--;
+              front=(front+1)% data.length;
+              return val;
+          }
+      }
+      int peek()
+      {
+          if(size==0)
+          {
+              System.out.println("Queue underflow");
+              return -1;
+          }
+          else
+          {
+              return data[front];
+          }
+      }
+    }
+
+    public static void main(String[] args) {
+        CustomStack cs=new CustomStack(3);
+        cs.push(10);
+        cs.push(20);
+        cs.push(30);
+        cs.display();
+        cs.push(40);
+        cs.push(50);
+        cs.push(60);
+
+        cs.push(70);
+        cs.push(80);
+        cs.push(90);
+        cs.display();
+    }
+}
