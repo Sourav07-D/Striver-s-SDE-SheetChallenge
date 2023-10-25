@@ -1,0 +1,36 @@
+
+
+class Solution {
+     public void BFS(ArrayList<ArrayList<Integer>> adj,boolean[] vis,int start,ArrayList<Integer> res)
+    {
+        Queue<Integer> q=new LinkedList<>();
+        q.add(start);
+        while(!q.isEmpty())
+        {
+            int curr=q.remove();
+            
+            if(!vis[curr])
+            {
+                res.add(curr);
+                vis[curr]=true;
+                for(int i=0;i<adj.get(curr).size();i++)
+                {
+                    q.add(adj.get(curr).get(i));
+                }
+            }
+        }
+    }
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] vis=new boolean[V];
+        ArrayList<Integer> res=new ArrayList<>();
+        // for(int i=0;i<V;i++)
+        // {
+        //     if(!vis[i])
+        //     {
+        //       BFS(adj,vis,i,res); 
+        //     }
+        // }
+        BFS(adj,vis,0,res);
+     return res;
+    }
+}
